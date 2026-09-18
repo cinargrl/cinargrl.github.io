@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Raporlamayı AI ile Otomatikleştirmek | Kod Yazmadan Çözümler</title>
+  <meta name="description" content="Excel'de tekrarlayan raporları kod yazmadan AI ile nasıl otomatikleştirirsin? Gerçek prompt örnekleri, formül üretimi ve Power Query ile adım adım yöntem.">
+  <link rel="canonical" href="https://cinargrl.github.io/excel-raporlama-otomasyonu-ai.html">
+  <meta name="robots" content="index, follow">
+
+  <!-- GEO & Arama Motorları İçin JSON-LD Article Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Excel Raporlama Süreçlerini AI ile Otomatikleştirmek: Kod Yazmadan Pratik Çözümler",
+    "description": "Excel'de tekrarlayan raporları kod yazmadan yapay zeka ile otomatikleştirme yöntemleri, prompt şablonları ve Power Query M dili uygulamaları.",
+    "author": {
+      "@type": "Person",
+      "name": "Çınar Gürel"
+    },
+    "datePublished": "2026-09-18",
+    "inLanguage": "tr"
+  }
+  </script>
+
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.75; color: #1f2937; max-width: 760px; margin: 0 auto; padding: 40px 20px; background: #f9fafb; }
+    article { background: #ffffff; padding: 40px; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    h1 { font-size: 1.95rem; color: #111827; line-height: 1.3; margin-bottom: 8px; }
+    .meta { font-size: 0.88rem; color: #6b7280; margin-bottom: 24px; }
+    h2 { font-size: 1.35rem; color: #1f2937; margin-top: 36px; border-bottom: 1px solid #f3f4f6; padding-bottom: 8px; }
+    p, li { font-size: 1rem; color: #374151; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 8px; }
+    pre { background: #0f172a; color: #f8fafc; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.88rem; line-height: 1.5; }
+    code { font-family: Consolas, Monaco, monospace; }
+    .prompt-box { background: #eff6ff; border-left: 4px solid #2563eb; padding: 14px 18px; border-radius: 4px; margin: 18px 0; font-family: Consolas, monospace; font-size: 0.9rem; color: #1e3a8a; white-space: pre-wrap; }
+    .callout-warn { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 14px 18px; border-radius: 4px; margin: 18px 0; font-size: 0.95rem; color: #92400e; }
+    a { color: #2563eb; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<article>
+  <header>
+    <h1>Excel Raporlama Süreçlerini AI ile Otomatikleştirmek: Kod Yazmadan Pratik Çözümler</h1>
+    <div class="meta">Kategori: Excel & Operasyon • Yazar: Çınar Gürel • Okuma Süresi: 5 dk</div>
+  </header>
+
+  <p>Operasyon ya da destek ekibinde çalışan hemen herkesin tanıdık bir derdi vardır: her hafta, her ay aynı formatta hazırlanan bir rapor. Aynı sütunlar, aynı filtreler, aynı pivot tablo — sadece veriler değişir. Bu tekrar eden işi manuel yapmak hem zaman kaybettirir hem de insan hatasına açık bir alan yaratır.</p>
+
+  <p>Son dönemde yapay zeka araçları (ChatGPT, Claude gibi) bu sürecin büyük bölümünü otomatikleştirmeyi mümkün kılıyor — üstelik tek satır kod yazmadan. Ama "AI ile Excel'i otomatikleştirebilirsin" demek kolay; gerçekten işe yarayan sonucu almak, doğru şekilde prompt yazmayı bilmeyi gerektiriyor. Bu yazıda, genel tavsiyelerin ötesine geçip kopyalayıp kullanabileceğin somut yöntemleri anlatıyorum.</p>
+
+  <h2>Neden "Kod Yazmadan" Önemli?</h2>
+  <p>VBA veya Python öğrenmek elbette değerli bir beceri, ama herkesin buna zamanı ya da ihtiyacı olmuyor. AI destekli yaklaşımın avantajı, teknik bilgi eşiğini büyük ölçüde düşürmesi: ne yapmak istediğini düz bir dille tarif ediyorsun, AI bunu senin için formüle, adıma ya da script'e çeviriyor. Sen kodun ne yaptığını anlayıp doğrulamaktan sorumlusun — yazmaktan değil.</p>
+  <p>Peki bu tarif etme işini nasıl doğru yaparsın? Aşağıdaki üç yöntem tam olarak buna cevap veriyor.</p>
+
+  <h2>Yöntem 1: "Mantığı Tarif Et, Formülü Değil" Tekniği</h2>
+  <p>Çoğu kişi AI'a "bana bir formül yaz" der ve genel, işe yaramayan bir cevap alır. Sorun formülde değil, promptta.</p>
+  <p>Bunu kendi deneyimimden biliyorum. AI hayatımıza girdiğinde, özellikle üniversitenin ilk yıllarında, ondan aldığım yardımın hem çok fazla hem bir o kadar da hatalı olduğunu itiraf etmeliyim — ve bunun suçu sandığım kadar yapay zekanın gelişmemişliğinde değildi, benim henüz prompt mantığını kavrayamamış olmamdı. Excel'i yeni öğrendiğim dönemde, sorunlarımı AI'a sanki karşımda bir insan varmış gibi anlatıyordum; bu yüzden bir soruya doğru cevabı alana kadar genelde 4-5 kez tekrar sormam gerekiyordu. Doğru promptu ilk seferde kurmayı öğrendikten sonra bu süreç hayatımı inanılmaz kolaylaştırdı — aşağıdaki "kötü prompt / iyi prompt" ayrımı da tam olarak bu deneyimden çıkan bir ders.</p>
+
+  <p><strong>Kötü prompt:</strong> <em>"Excel'de koşullu toplama formülü yaz"</em></p>
+  <p><strong>İyi prompt (kopyala-kullan):</strong></p>
+  <div class="prompt-box">Excel'de şu mantığı uygulayan bir formül istiyorum:
+- A sütunu: Kategori (Task, Incident, Bug)
+- B sütunu: Tarih
+- C sütunu: Durum (Açık, Kapalı, Beklemede)
+
+İhtiyaç: Kategorisi "Task" veya "Incident" olan, tarihi bu ayın içinde olan ve durumu "Açık" olan satırları say.
+
+Formülü ver ve her parçasının ne işe yaradığını tek cümleyle açıkla.</div>
+
+  <p>Bu prompt'un verdiği gerçek formül şuna benzer:</p>
+  <pre><code>=SUMPRODUCT((A2:A100="Task")+(A2:A100="Incident"), (MONTH(B2:B100)=MONTH(TODAY())), (C2:C100="Açık"))</code></pre>
+
+  <p><strong>Neden bu önemli:</strong> <code>SUMPRODUCT</code> fonksiyonu, <code>COUNTIFS</code> ile kolayca yapamayacağın "VEYA" mantığını (Task veya Incident) işin içine katmanı sağlıyor. AI'a bu detayı tarif etmezsen sana yanlışlıkla sadece "VE" mantığıyla çalışan bir COUNTIFS verir — sonucun sessizce yanlış çıkar, fark etmeyebilirsin. Bu tür "sessiz hatalar" AI destekli formül üretiminde en sık karşılaşılan tuzak.</p>
+
+  <h2>Yöntem 2: Power Query'de "Adım Adım Anlat" Tekniği</h2>
+  <p>Veri temizleme için doğrudan formül yerine Power Query kullanmak, tekrar eden raporlarda çok daha sağlam bir çözüm — çünkü bir kere kurduğun adımlar, yeni veri geldiğinde otomatik tekrar çalışır (formülü her seferinde yeniden kopyalamana gerek kalmaz).</p>
+  <p>Power Query, mantığını kavraması nispeten kolay ama ustalaşması bir o kadar zaman isteyen bir araç. Ama gözlemim şu: Excel'in genel mantığına zaten hakim biri için AI üzerinden prompt vererek bu işi yaptırmak neredeyse sıfır efor gerektiriyor — çünkü asıl zor olan kısım kodu yazmak değil, hangi adımların gerektiğini bilmek, ve bunu zaten biliyorsan AI'a aktarmak çok hızlı oluyor. Tam da bu yüzden Power Query, AI'ın en yüksek fayda sağladığı alanlardan biri.</p>
+
+  <p><strong>Örnek senaryo:</strong> Elinde tarih sütunu bazen "12.03.2026", bazen "2026-03-12", bazen "12/03/2026" formatında karışık bir veri var.</p>
+  <p><strong>Kullanılacak prompt yapısı:</strong></p>
+  <div class="prompt-box">Power Query'de M dili ile şu adımları yapmam gerekiyor:
+1. [Tarih] sütunundaki farklı formatlardaki tarihleri tek bir standart formata (gg.aa.yyyy) çevir
+2. Boş satırları sil
+3. [Kategori] sütununda baştaki/sondaki boşlukları temizle
+
+Bunu Power Query'nin Advanced Editor'ünde kullanabileceğim M kod bloğu olarak ver, her satırın ne yaptığını yorum satırı olarak ekle.</div>
+
+  <p>AI sana şuna benzer bir çıktı verir:</p>
+  <pre><code>let
+    Source = Excel.CurrentWorkbook(){[Name="Tablo1"]}[Content],
+    // Farklı tarih formatlarını standart tarihe çevir
+    DuzeltilmisTarih = Table.TransformColumns(Source, 
+        {{"Tarih", each Date.From(_), type date}}),
+    // Boş satırları temizle
+    BosSatirlarSilindi = Table.SelectRows(DuzeltilmisTarih, 
+        each [Kategori] <> null),
+    // Baştaki/sondaki boşlukları temizle
+    BoslukTemizlendi = Table.TransformColumns(BosSatirlarSilindi, 
+        {{"Kategori", Text.Trim}})
+in
+    BoslukTemizlendi</code></pre>
+
+  <div class="callout-warn">
+    <strong>Kritik nokta:</strong> <code>Date.From(_)</code> fonksiyonu her zaman güvenilir değildir — kaynak verinde gerçekten tutarsız formatlar varsa (örneğin bazı hücrelerde metin olarak yazılmış tarihler), bu adım hata verebilir. AI'dan aldığın kodu doğrudan üretim raporuna koymadan önce, mutlaka 10-15 satırlık örnek veri üzerinde test et.
+  </div>
+
+  <h2>Yöntem 3: Tekrarlayan Raporu "Şablon + Talimat" Olarak Kaydetmek</h2>
+  <p>Her hafta aynı raporu üretiyorsan, AI'a raporun mantığını bir kere, detaylı şekilde anlatıp bunu metin olarak sakla (bir not uygulamasında ya da Word dosyasında). Yeni haftanın verisi geldiğinde bu talimatı tekrar kullan — böylece her seferinde sıfırdan açıklama yapmak zorunda kalmazsın.</p>
+  <p>Örnek bir "kayıtlı talimat" şu şekilde olabilir:</p>
+  <div class="prompt-box">RAPOR ADI: Haftalık Açık Ticket Özeti
+GİRDİ: [Ticket No, Kategori, Açılış Tarihi, Durum, Atanan Kişi] sütunlu ham veri
+ÇIKTI:
+1. Durum = "Açık" olanları filtrele
+2. Atanan Kişiye göre grupla, her kişinin açık ticket sayısını say
+3. Kategoriye göre ikinci bir kırılım ekle
+4. Sonucu büyükten küçüğe sırala
+5. En üstte toplam sayıyı göster</div>
+  <p>Bu talimatı her hafta aynen AI'a verip yeni veriyi ekleyerek, raporu neredeyse otomatik hale getirebilirsin.</p>
+
+  <h2>Nerede Durman Gerekiyor: Gerçek Sınırlar</h2>
+  <ul>
+    <li><code>SUMPRODUCT</code> gibi dizi formülleri büyük veri setlerinde (10.000+ satır) yavaşlayabilir — performans sorununu fark edersen <code>SUMIFS</code>/<code>COUNTIFS</code> kombinasyonlarına geri dönmek daha sağlıklı olabilir.</li>
+    <li>AI, hücre referanslarını bazen kaydırarak verir (örneğin A2:A100 yerine A1:99) — formülü yapıştırmadan önce referans aralığını kendi verinle mutlaka karşılaştır.</li>
+    <li>Şirket verisini dış bir AI aracına yapıştırmadan önce veri politikanı kontrol et; gerçek veri yerine örnek/sahte veriyle prompt yazmak çoğu durumda yeterli ve daha güvenli.</li>
+  </ul>
+
+  <h2>Sonuç</h2>
+  <p>AI'dan verim almanın sırrı "formül yaz" gibi genel bir istek değil, mantığı adım adım, örnek veriyle tarif etmek. Yukarıdaki üç yöntemi (formül tarifi, Power Query adım anlatımı, kayıtlı talimat) kendi raporuna uyarlayarak başlayabilirsin — en basit, en sık tekrarlanan rapordan başlamak, güven inşa etmenin en hızlı yolu.</p>
+  
+  <p><em>Bu yazı, operasyon ve destek ekiplerinde AI destekli süreç otomasyonu üzerine hazırlanan yazı dizisinin bir parçasıdır. Serinin devamında <a href="jira-ticket-akislari-ai-otomasyon.html">Jira ticket akışlarını AI ile hızlandırma</a> ve <a href="ai-ile-operasyonel-surec-otomasyonu.html">AI ile operasyonel süreç otomasyonu kapsamlı rehberi</a> konularını da inceleyebilirsiniz.</em></p>
+</article>
+
+</body>
+</html>
